@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     RATE_LIMIT_PER_MINUTE: int = 60
 
     class Config:
-        env_file = str(ENV_FILE)
+        env_file = str(ENV_FILE) if ENV_FILE.exists() else None
         case_sensitive = True
 
 
