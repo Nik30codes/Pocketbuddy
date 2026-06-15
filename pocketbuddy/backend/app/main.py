@@ -35,9 +35,9 @@ app = FastAPI(
     redoc_url="/api/redoc",
 )
 
-# Custom middleware
-app.add_middleware(LoggingMiddleware)
-app.add_middleware(RateLimitMiddleware)
+# Custom middleware (disabled for production - causes issues behind load balancers)
+# app.add_middleware(LoggingMiddleware)
+# app.add_middleware(RateLimitMiddleware)
 
 # CORS - must be added LAST (runs FIRST in middleware stack)
 app.add_middleware(
