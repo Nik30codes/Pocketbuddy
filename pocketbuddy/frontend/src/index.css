@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F4F0E5;
+  --surface: #EFE9DB;
+  --text-primary: #222222;
+  --text-secondary: #555555;
+  --accent-orange: #F26522;
+  --accent-purple: #7A6FD8;
+  --border: #D7D1C4;
+  --card-bg: #EFE9DB;
+  --input-bg: #EFE9DB;
+  --nav-bg: rgba(255, 255, 255, 0.95);
+}
+
+.dark {
+  --bg: #121212;
+  --surface: #1A1A1A;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A8A8A8;
+  --accent-orange: #FF6A00;
+  --accent-purple: #8A7DFF;
+  --border: #2A2A2A;
+  --card-bg: #1A1A1A;
+  --input-bg: #1A1A1A;
+  --nav-bg: rgba(18, 18, 18, 0.9);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--bg);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4 {
+    color: var(--text-primary);
+  }
+
+  p, span, label, td, th, li {
+    color: var(--text-primary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl p-6 shadow-sm;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+
+  .card-hover {
+    @apply card;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+    border-color: var(--accent-orange);
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-full font-medium transition-all
+           disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: var(--accent-orange);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-full font-medium transition-all;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-orange);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+    color: var(--text-secondary);
+  }
+
+  .btn-ghost:hover {
+    background-color: var(--surface);
+    color: var(--text-primary);
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl transition-all duration-200;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  .input-field::placeholder {
+    color: var(--text-secondary);
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: var(--accent-orange);
+    box-shadow: 0 0 0 3px rgba(242, 101, 34, 0.12);
+  }
+
+  .score-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold;
+  }
+
+  .score-low {
+    @apply score-badge;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+
+  .score-medium {
+    @apply score-badge;
+    background-color: rgba(234, 179, 8, 0.1);
+    color: #ca8a04;
+  }
+
+  .score-high {
+    @apply score-badge;
+    background-color: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.4s ease-out forwards;
+  }
+}
