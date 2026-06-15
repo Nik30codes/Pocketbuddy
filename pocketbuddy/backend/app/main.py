@@ -35,7 +35,11 @@ app = FastAPI(
     redoc_url="/api/redoc",
 )
 
-# CORS
+# Custom middleware
+app.add_middleware(LoggingMiddleware)
+app.add_middleware(RateLimitMiddleware)
+
+# CORS - must be added LAST (runs FIRST in middleware stack)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -43,10 +47,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Custom middleware
-app.add_middleware(LoggingMiddleware)
-app.add_middleware(RateLimitMiddleware)
 
 # Include API routes
 app.include_router(api_router, prefix="/api/v1")
